@@ -332,7 +332,7 @@ Get-Help Get-Process -full
 
 **Comparison Operators**
 
-* Prefix "i" means "is not"
+* Prefix "i" means "case sensitive" (which is already the default)
 * Prefix "c" means "case sensitive"
 
 Equality
