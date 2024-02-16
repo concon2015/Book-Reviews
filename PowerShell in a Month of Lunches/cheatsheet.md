@@ -447,3 +447,118 @@ Do as much processing as you can on the remote machine within the `-ScriptBlock`
 `Wait-Job` Used to pause execution until job has finished
 
 ## Chapter 15
+
+**Iterating Objects**
+
+`Get-Content processes.txt | For-EachObject {Stop-Process $_}` One at a time
+
+`Get-Content processes.txt | For-EachObject -Parallel {Stop-Process $_}` Multiple at once. Default to 5 at once
+
+**Measuring Command Speed**
+
+`Measure-Command {Start-Sleep 2}`
+
+## Chapter 16
+
+**Setting Variables**
+
+`$var = 42`
+
+`$computers = 'windows1','windows2','windows3'`
+
+**Referencing Variables**
+
+`$var`
+
+`$computers[0]`
+
+**Variable Methods**
+
+`$computers[0].length`
+
+`$computers[0].toupper()`
+
+`$computers[0].tolower()`
+
+`$computers[0].replace('windows','linux')`
+
+**Declaring Variable Type**
+
+`[int]$var = 42`
+
+**Deleting Variables**
+
+`Remove-Variable $var`
+
+## Chapter 17
+
+**Read Host**
+
+`[int]$number = Read-Host 'Enter a Number'`
+
+**Write Host**
+
+* Write-Host outputs to the terminal
+
+`Write-Host 'Your number is $var'`
+
+`Write-Host 'Your number is $var' -Foreground yellow -Background magenta`
+
+**Write Output**
+
+* Write-Output outputs to the pipeline so additional filtering and operations can be done
+
+`Write-Output 'Hello'`
+
+`Write-Output 'Hello' | Where-Object {$_.length -gt 10}`
+
+**Other Ways to Write**
+
+`Write-Warning`
+
+`Write-Verbose`
+
+`Write-Debug`
+
+`Write-Error`
+
+`Write-Information`
+
+## Chapter 18
+
+**Create PS Session**
+
+`$session = New-PSSession -ComputerName windows1`
+
+**Get PS Session**
+
+`Get-PSSession`
+
+**Enter PS Session**
+
+`Enter-PSSession $session`
+
+**Exit PS Session**
+
+`Exit-PSSession`
+
+**Invoke Commands for PS Session(s)**
+
+`Invoke-Command -command {gci} -session $session`
+
+## Chapter 19
+
+**Function/Script Parameters**
+
+**Define a Parameter**
+
+```
+param {
+	$computerName = 'localhost'
+	$driveType = 3
+}
+```
+
+`.\script.ps1 -computername 'windows1' -drivetype 2`
+
+* Add in the beginning of a function/script. `'localhost' and '3' are the default values if not specified.
