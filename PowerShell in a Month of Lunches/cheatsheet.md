@@ -546,19 +546,192 @@ Do as much processing as you can on the remote machine within the `-ScriptBlock`
 
 `Invoke-Command -command {gci} -session $session`
 
-## Chapter 19
+## Chapters 19 and 20
 
 **Function/Script Parameters**
 
 **Define a Parameter**
 
 ```
+[CmdletBinding()]
 param {
-	$computerName = 'localhost'
-	$driveType = 3
+	[parameter(Mandatory=$True)]
+	[Alias('hostname')]
+	[ValueFromPipeline=$True]
+	[string]$computerName = 'localhost',
+	[ValidateSet(2,3)]
+	[int]$driveType = 3
 }
 ```
 
 `.\script.ps1 -computername 'windows1' -drivetype 2`
 
-* Add in the beginning of a function/script. `'localhost' and '3' are the default values if not specified.
+* `localhost` and `3` are the default values if not specified
+
+**Comment Based Help**
+
+```
+<#
+        .SYNOPSIS
+        Adds a file name extension to a supplied name.
+
+        .DESCRIPTION
+        Adds a file name extension to a supplied name.
+        Takes any strings for the file name or extension.
+
+        .PARAMETER Name
+        Specifies the file name.
+
+        .PARAMETER Extension
+        Specifies the extension. "Txt" is the default.
+
+        .INPUTS
+        None. You can't pipe objects to Add-Extension.
+
+        .OUTPUTS
+        System.String. Add-Extension returns a string with the extension or file name.
+
+        .EXAMPLE
+        PS> Add-Extension -name "File"
+        File.txt
+
+        .EXAMPLE
+        PS> Add-Extension -name "File" -extension "doc"
+        File.doc
+
+        .EXAMPLE
+        PS> Add-Extension "File" "doc"
+        File.doc
+
+    #>
+```
+
+`Get-Help .\script.ps1 --full`
+
+**Script Output**
+
+* Don't use `Format-*` in the output of your script unless there is a good reason. This gives additional flexibility to the user to use `Export-CSV`, `Format-Table`, `Export-ToHtml`, or whatever works best for their workflow
+
+**Verbose Output**
+
+`Write-Verbose "This will only be seen if ran with the -verbose flag"`
+
+## Chapter 21
+
+[Regex Resource](https://regex101.com)
+
+**Regex Help**
+
+`help about_regular_expressions`
+
+**Regex with -match**
+
+```
+"car" -match "c[aeiou]r"
+$true
+```
+
+**Regex with Select-String**
+
+`Get-Content cars.txt | Select-String -pattern 'c[aeiou]r'`
+
+## Chapter 22
+
+**Try Catch**
+
+```
+$computer = 'windows1'
+try{
+	Enter-PSSession -Computer $computer
+}
+catch{
+	Write-Host "Couldn't connect to $computer"
+}
+```
+
+## Chapter 23
+
+**foreach**
+
+```
+$array = (1..10)
+foreach ($a in $array) {Write-Host $a}
+```
+
+**Foreach-Object**
+
+* Foreach-Object is normally used in a pipeline
+
+`Get-ChildItem | Foreach-Object {$_.Name}`
+
+`Get-ChildItem | Foreach-Object -Paralell {$_.Name}`
+
+**While**
+
+```
+$n=1
+While ($n -ne 10} (Write-Output $n; $n++)
+```
+
+**Do While**
+
+```
+Start-process notepad
+$p = "notepad"
+Do
+{
+ "$p found at $(get-date)"
+ $proc = Get-Process
+ start-sleep 2
+} While ($proc.name -contains 'notepad') 
+```
+
+## Chapter 24
+
+**Error Variable**
+
+`$error` contains an array of errors from the current session
+
+`-ErrorVariable a` allows you to set a variable to send errors to for loter use
+
+**Error Action Preference**
+
+`$ErrorActionPreference` can be set to determine what PowerShell will do when an error occurs
+
+* `Break` - Enter debuggger
+* `Continue` (Default) - Display error message and continue running
+* `Ignore` - Supress the error message and continue running (Note: Only for use on a per command basis. Not valid value for `$ErrorActionPreference` variable)
+* `Inquire` - Display error message and ask if user wants to keep running
+* `SilentlyContinue` - Don't display message and continue running
+* `Stop` - Stop running program
+* `Suspend` - Suspend workflow and allow for further investiation (Note: Only for use on a per command basis. Not valid value for `$ErrorActionPreference` variable)
+
+## Chapter 25 
+
+**Debug Output**
+
+`Write-Debug "This will only be seen if ran with the if the $DebugPreference variable is set to 'Continue'"`
+
+# Chapter 26
+
+**List PowerShell Profiles**
+
+`$profiles | ft`
+
+**PowerShell Profile Location**
+
+* $pshome\profile.ps1 - All users
+* $home\Documents\PowerShell\profile.ps1 - Only current user
+
+**Operators**
+
+* `-as` Convert object to different type `1000/3 -as [int]` returns `333`
+* `-is` Convert object to different type `'cat' -is [int]` returns `$false`
+* `-replace` Uses regex to replace strings `"192.168.10.15" -replace "10","11"` returns `192.168.11.15`
+
+**Date Manipulation**
+
+```
+$today = Get-Date
+$ninetyDaysAgo = $today.adddays(-90)
+```
