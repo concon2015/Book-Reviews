@@ -171,7 +171,7 @@ You can abreviate parameter names using as long as they are unique.
 ## Chapter 5
 
 **PowerShell Providers**
-A PowerShell provider allows commmand line access to data and components of the ssytem that wouldn't otehrtwise be accessible.
+A PowerShell provider allows commmand line access to data and components of the system that wouldn't otehrtwise be accessible.
 
 `Get-PSProvider`
 ```
@@ -228,4 +228,222 @@ Mode                 LastWriteTime         Length Name
 
 ## Chapter 6
 
+**Pipeline**
 
+ * The pipe character | is used to chain commands together and pass input from one command to the next. Performs similar to Unix/Linux pipe.
+
+    Example : `Get-ChildItem | Select-Object -Property Name`
+
+**Commands to Export Output**
+
+* `Export-CSV` Note: Can be imported with `Import-CSV`
+* `ConvertTo-Json | Out-File file.json`
+* `Export-Clixml` Note: This format keeps all objectes in tact and can be imported with `Import-Clixml`
+* `Out-File`
+* `ConvertTo-Html | Out-File index.html`
+
+**Comparing Objects**
+
+`Compare-Object -Reference .\object1.txt -Difference .\object2.txt`
+
+**Printing File Contents**
+`Get=Contents file.txt`
+
+
+## Chapter 7
+
+**Installing Modules**
+`Install-Module Az`
+
+**Check Installed Modules**
+`Get-Module Az -ListAvailable`
+
+**List Module Commands**
+`Get-Command -Module Microsoft.PowerShell.Archive`
+
+## Chapter 8
+
+* Object = Single thing
+* Property = Piece of information about an object
+* Method = Action you can take on an object
+* Collection = Group of objects
+
+**Get Member**
+`Get-ChildItem | Get-Member`
+* Alias `gm`
+* Used to list properties and methods for an object
+
+**Sorting Objects**
+
+`Get-Process | Sort-Object -Property Name`
+
+**Selecting Properties**
+
+`Get-Process | Select-Object -Property Name,ID,CPU`
+
+## Chapter 10
+
+**Pipeline Input**
+* Some commands can accept input from pipeline input. It if found in the help pages
+```
+Get-Help Get-Process -full
+. . . . . . . . . . . . . .
+. . . . . . . . . . . . . .
+-Name <System.String[]>
+ Specifies one or more processes by process name. You can type multiple process names (separated by commas) and use wildcard characters. The parameter name (`Name`) is optional.
+        Required?                    false
+        Position?                    0
+        Default value                None
+        Accept pipeline input?       True (ByPropertyName)
+        Accept wildcard characters?  True
+```
+
+**Hash Table**
+
+`Get-Process | Select-Object -Property @{name="New Name";expression="Name"}`
+
+**Parenthetical Commands**
+
+`Get-Command -Module (Get-Content .\modules.txt)`
+
+## Chapter 11
+
+**Formatting**
+
+* Format Table `Get-Process | Format-Table -Property Name,ID,Responding -GroupBy Responding` Alias `ft`
+* Format List `Get-Process | Format-List -Property Name,ID,Responding` Alias `fl`
+* Format Wide `Get-Process | Format-Wide -Property Name -Column 5` Alias `fw`
+
+* Alawys format commands the furtherst to the right as posssible. 
+
+## Chapter 12
+
+**Filtering**
+
+* Some commands offer native filtering. `Get-Process -Name *pwsh*,svc*`
+
+* Other commands can be filtered using `Where-Object`
+    
+    * `Get-Process | Where-Object -FilterScript {$_.WorkingSet -gt 100MB}`
+    * `Get-Process | Where-Object {$_.Name -match 'pws'}`
+
+* Filter to the left as much as you can
+
+
+**Comparison Operators**
+
+* Prefix "i" means "is not"
+* Prefix "c" means "case sensitive"
+
+Equality
+
+    -eq, -ieq, -ceq - equals
+
+    -ne, -ine, -cne - not equals
+
+    -gt, -igt, -cgt - greater than
+
+    -ge, -ige, -cge - greater than or equal
+
+    -lt, -ilt, -clt - less than
+
+    -le, -ile, -cle - less than or equal
+
+
+Matching
+
+    -like, -ilike, -clike - string matches wildcard pattern
+
+    -notlike, -inotlike, -cnotlike - string doesn't match wildcard pattern
+
+    -match, -imatch, -cmatch - string matches regex pattern
+
+    -notmatch, -inotmatch, -cnotmatch - string doesn't match regex pattern
+
+Replacement
+
+    -replace, -ireplace, -creplace - replaces strings matching a regex pattern
+
+Containment
+
+    -contains, -icontains, -ccontains - collection contains a value
+
+    -notcontains, -inotcontains, -cnotcontains - collection doesn't contain a value
+
+    -in - value is in a collection
+
+    -notin - value isn't in a collection
+
+Type
+
+    -is - both objects are the same type
+
+    -isnot - the objects aren't the same type
+
+**$_. Keyword**
+
+`$_.` refers to the current object in the pipeline. 
+
+Properties can be appended such as `$_.WorkingSet`
+
+`Get-Process | Where-Object -FilterScript {$_.WorkingSet -gt 100MB}`
+
+## Chapter 13
+
+WSMan stands for Web Services for Management. This is the communication protocol for remote powershell. This opererates over HTTP and HTTPS. (Note: traffic is still encrypted over http). WSMan runs via the WinRM process. This is installed by default on Windows but not enabled. Can be enabled via GPO.
+
+PowerShell remoting can be done with (Windows), macOS, and Linux over SSH
+
+**Enable PS Remoting**
+
+From an admin PowerShell window, run `Enable-PSRemoting`
+
+**Opening an Interactive PS Session**
+
+`Enter-PSSession -ComputerName computer1 -Username user1` use `-ComputerName` to create a session over WinRM
+
+`Enter-PSSession -Hostname Computer1 -Username user1` use `-Hostname` to create a session over SSH
+
+**Closing an Interactive PS Session**
+
+`Exit-PSSession`
+
+**Running Remote Commands**
+
+`Invoke-Command -ComputerName windows1,windows2 -ScriptBlock {Get-Process svchost}`
+
+**Remoting Tips and Tricks**
+
+Use hostname instead of IP address
+
+`help about_Remote_Troubleshooting -Online` for detailed troubleshooting steps
+
+Do as much processing as you can on the remote machine within the `-ScriptBlock` to reduce transmitted data and increase processing speed. Really makes a difference when running commands on multiple machines
+
+## Chapter 14
+
+**Start Jobs**
+
+`Start-Job -ScriptBlock {gci}` Spins up a new process
+
+`Start-ThreadJob -ScriptBlock {gci}` Runs in the same process
+
+`Invoke-Command -ComputerName windows1 -ScriptBlock {gci} -AsJob -JobName RemoteJob` Run a remote command as a job
+
+**Getting Job Results**
+
+`Get-Job` Lists all jobs and current statuses
+
+`Receive-Job -id 1` Gets job output and clears output queue
+
+`Receive-Job -id 1 -Keep` Gets job output and leaves output queue intact
+
+**Managing Jobs**
+
+`Remove-Job -id 1` Removes job and all cached output
+
+`Stop-Job` Stop job and keep all cached output
+
+`Wait-Job` Used to pause execution until job has finished
+
+## Chapter 15
