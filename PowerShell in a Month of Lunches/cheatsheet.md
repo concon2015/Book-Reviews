@@ -22,7 +22,9 @@
 
 `Update-Help`  Download updates to help files (NOTE: Must run in admin prompt)
 
-**Parameter Sets** - The SYNTAX section will display common ways commands can be used. Parameters must all exist in the same set. Cannot cross parameters from different sets.
+### Parameter Sets
+
+The SYNTAX section will display common ways commands can be used. Parameters must all exist in the same set. Cannot cross parameters from different sets.
 
 ```
 SYNTAX
@@ -32,18 +34,17 @@ Get-Item [-Stream <String[]>] [-Credential <PSCredential>] [-Exclude <String[]>]
 Get-Item [-Path] <String[]> [-Stream <String[]>] [-Credential <PSCredential>] [-Exclude <String[]>] [-Filter <String>] [-Force] [-Include <String[]>] [<CommonParameters>]
 ```
 
-**Mandatory Parameters vs Optional Parameters**
+### Mandatory Parameters vs Optional Parameters
 	
 Mandatory - Only the parameter flag is inside of brackets
     
 `[-Path] <String[]>`
 
-
 Optional - Entire parameter and data type are inside brackets    
     
 `[-Stream <String[]>]` 
 
-**Positional Parameters**
+### Positional Parameters
 
 * Don’t need to provide parameter name as long as all positional paremeters are in the right order
 
@@ -60,7 +61,7 @@ Get-Help Get-Process -full
         Accept wildcard characters?  True
 ```
 
-**Parameter Types**
+### Parameter Types
 ```
 Get-Help Get-Process -full
 . . . . . . . . . . .
@@ -68,25 +69,25 @@ Get-Help Get-Process -full
 -Name <System.String[]>
 ```
 
-* [ ] Indicates that the parameter can accept an array of values or values separated by a comma
+* \[ \] Indicates that the parameter can accept an array of values or values separated by a comma
 
 
-**Cmdlet Examples**
+### Cmdlet Examples
 	
 `Get-Help Get-Process -Examples`
 
-**About Topics**
+### About Topics
 
 `help *about*`  Get general information about powershell nuances that isn't covered in cmdlet help files
 
 
-**Online Help**
+### Online Help
 
 `Get-Help Get-Process -online`  Open help documentation in web browser
 
 ## Chapter 4
 
-**Execution Policy**
+### Execution Policy
 
 The `Set-ExecutionPolicy` command dictates what scripts if any are allowed to run on a system
 
@@ -96,11 +97,11 @@ The `Set-ExecutionPolicy` command dictates what scripts if any are allowed to ru
 * `Set-ExecutionPolicy -Unrestricted` - All scripts can run
 * `Set-ExecutionPolicy -Bypass` - This execution policy is designed for configurations in which a PowerShell script is built into a larger application or for configurations in which PowerShell is the foundation for a program that has its own security model.
 
-**Cmdlet Naming Convention**
+### Cmdlet Naming Convention
 
 Cmdlets follow a verb - noun naming comvention
 
-**PowerShell Verbs**
+### PowerShell Verbs
 
 `get-verb |select verb | fw -Column 6`
 
@@ -125,7 +126,7 @@ Protect             Revoke              Unblock             Unprotect
 ```
 [Approved PowerShell Verbs](https://learn.microsoft.com/en-us/powershell/scripting/developer/cmdlet/approved-verbs-for-windows-powershell-commands?view=powershell-7.4)
 
-**Aliases**
+### Aliases
 
 `Get-Alias -Definition 'Get-Process'`
 
@@ -163,14 +164,14 @@ tee -> Tee-Object       type -> Get-Content     where -> Where-Object   wjb -> W
 ```
 
 
-**Truncating Parameter Names**
+### Truncating Parameter Names
 
 You can abreviate parameter names using as long as they are unique.
 `-ComputerName` can be abbreviated to `-Comp`
 
 ## Chapter 5
 
-**PowerShell Providers**
+### PowerShell Providers
 A PowerShell provider allows commmand line access to data and components of the system that wouldn't otehrtwise be accessible.
 
 `Get-PSProvider`
@@ -185,7 +186,7 @@ Function             ShouldProcess                                     {Function
 Variable             ShouldProcess                                     {Variable}
 ```
 
-**PSDrive**
+### PSDrive
 
 A PSDrive allows you to connect a Provider to data storage.
 
@@ -206,13 +207,13 @@ Variable
 WSMan
 ```
 
-**Navigate System**
+### Navigate System
 
 `cd c:\temp\folder1` is an alias for `Set-Location`
 
 You can also naviage in other drives such as `Set-Location hkcu:` or `cd env:`
 
-**View Files, Folders, and Data**
+### View Files, Folders, and Data
 
 `Get-ChildItem C:\temp`
 
@@ -228,13 +229,13 @@ Mode                 LastWriteTime         Length Name
 
 ## Chapter 6
 
-**Pipeline**
+### Pipeline
 
  * The pipe character | is used to chain commands together and pass input from one command to the next. Performs similar to Unix/Linux pipe.
 
     Example : `Get-ChildItem | Select-Object -Property Name`
 
-**Commands to Export Output**
+### Commands to Export Output
 
 * `Export-CSV` Note: Can be imported with `Import-CSV`
 * `ConvertTo-Json | Out-File file.json`
@@ -242,23 +243,23 @@ Mode                 LastWriteTime         Length Name
 * `Out-File`
 * `ConvertTo-Html | Out-File index.html`
 
-**Comparing Objects**
+### Comparing Objects
 
 `Compare-Object -Reference .\object1.txt -Difference .\object2.txt`
 
-**Printing File Contents**
+### Printing File Contents
 `Get=Contents file.txt`
 
 
 ## Chapter 7
 
-**Installing Modules**
+### Installing Modules
 `Install-Module Az`
 
-**Check Installed Modules**
+### Check Installed Modules
 `Get-Module Az -ListAvailable`
 
-**List Module Commands**
+### List Module Commands
 `Get-Command -Module Microsoft.PowerShell.Archive`
 
 ## Chapter 8
@@ -268,22 +269,23 @@ Mode                 LastWriteTime         Length Name
 * Method = Action you can take on an object
 * Collection = Group of objects
 
-**Get Member**
+### Get Member
 `Get-ChildItem | Get-Member`
 * Alias `gm`
 * Used to list properties and methods for an object
 
-**Sorting Objects**
+### Sorting Objects
 
 `Get-Process | Sort-Object -Property Name`
 
-**Selecting Properties**
+### Selecting Properties
 
 `Get-Process | Select-Object -Property Name,ID,CPU`
 
 ## Chapter 10
 
-**Pipeline Input**
+### Pipeline Input
+
 * Some commands can accept input from pipeline input. It if found in the help pages
 ```
 Get-Help Get-Process -full
@@ -298,17 +300,17 @@ Get-Help Get-Process -full
         Accept wildcard characters?  True
 ```
 
-**Hash Table**
+### Hash Table
 
 `Get-Process | Select-Object -Property @{name="New Name";expression="Name"}`
 
-**Parenthetical Commands**
+### Parenthetical Commands
 
 `Get-Command -Module (Get-Content .\modules.txt)`
 
 ## Chapter 11
 
-**Formatting**
+### Formatting
 
 * Format Table `Get-Process | Format-Table -Property Name,ID,Responding -GroupBy Responding` Alias `ft`
 * Format List `Get-Process | Format-List -Property Name,ID,Responding` Alias `fl`
@@ -318,7 +320,7 @@ Get-Help Get-Process -full
 
 ## Chapter 12
 
-**Filtering**
+### Filtering
 
 * Some commands offer native filtering. `Get-Process -Name *pwsh*,svc*`
 
@@ -330,7 +332,7 @@ Get-Help Get-Process -full
 * Filter to the left as much as you can
 
 
-**Comparison Operators**
+### Comparison Operators
 
 * Prefix "i" means "case sensitive" (which is already the default)
 * Prefix "c" means "case sensitive"
@@ -380,9 +382,9 @@ Type
 
     -isnot - the objects aren't the same type
 
-**$_. Keyword**
+### $_ Keyword
 
-`$_.` refers to the current object in the pipeline. 
+`$_` refers to the current object in the pipeline. 
 
 Properties can be appended such as `$_.WorkingSet`
 
@@ -394,25 +396,25 @@ WSMan stands for Web Services for Management. This is the communication protocol
 
 PowerShell remoting can be done with (Windows), macOS, and Linux over SSH
 
-**Enable PS Remoting**
+### Enable PS Remoting
 
 From an admin PowerShell window, run `Enable-PSRemoting`
 
-**Opening an Interactive PS Session**
+### Opening an Interactive PS Session
 
 `Enter-PSSession -ComputerName computer1 -Username user1` use `-ComputerName` to create a session over WinRM
 
 `Enter-PSSession -Hostname Computer1 -Username user1` use `-Hostname` to create a session over SSH
 
-**Closing an Interactive PS Session**
+vClosing an Interactive PS Session
 
 `Exit-PSSession`
 
-**Running Remote Commands**
+### Running Remote Commands
 
 `Invoke-Command -ComputerName windows1,windows2 -ScriptBlock {Get-Process svchost}`
 
-**Remoting Tips and Tricks**
+### Remoting Tips and Tricks
 
 Use hostname instead of IP address
 
@@ -422,7 +424,7 @@ Do as much processing as you can on the remote machine within the `-ScriptBlock`
 
 ## Chapter 14
 
-**Start Jobs**
+### Start Jobs
 
 `Start-Job -ScriptBlock {gci}` Spins up a new process
 
@@ -430,7 +432,7 @@ Do as much processing as you can on the remote machine within the `-ScriptBlock`
 
 `Invoke-Command -ComputerName windows1 -ScriptBlock {gci} -AsJob -JobName RemoteJob` Run a remote command as a job
 
-**Getting Job Results**
+### Getting Job Results
 
 `Get-Job` Lists all jobs and current statuses
 
@@ -438,7 +440,7 @@ Do as much processing as you can on the remote machine within the `-ScriptBlock`
 
 `Receive-Job -id 1 -Keep` Gets job output and leaves output queue intact
 
-**Managing Jobs**
+### Managing Jobs
 
 `Remove-Job -id 1` Removes job and all cached output
 
@@ -448,31 +450,31 @@ Do as much processing as you can on the remote machine within the `-ScriptBlock`
 
 ## Chapter 15
 
-**Iterating Objects**
+### Iterating Objects
 
 `Get-Content processes.txt | For-EachObject {Stop-Process $_}` One at a time
 
 `Get-Content processes.txt | For-EachObject -Parallel {Stop-Process $_}` Multiple at once. Default to 5 at once
 
-**Measuring Command Speed**
+### Measuring Command Speed
 
 `Measure-Command {Start-Sleep 2}`
 
 ## Chapter 16
 
-**Setting Variables**
+### Setting Variables
 
 `$var = 42`
 
 `$computers = 'windows1','windows2','windows3'`
 
-**Referencing Variables**
+### Referencing Variables
 
 `$var`
 
 `$computers[0]`
 
-**Variable Methods**
+### Variable Methods
 
 `$computers[0].length`
 
@@ -482,21 +484,21 @@ Do as much processing as you can on the remote machine within the `-ScriptBlock`
 
 `$computers[0].replace('windows','linux')`
 
-**Declaring Variable Type**
+### Declaring Variable Type
 
 `[int]$var = 42`
 
-**Deleting Variables**
+### Deleting Variables
 
 `Remove-Variable $var`
 
 ## Chapter 17
 
-**Read Host**
+### Read Host
 
 `[int]$number = Read-Host 'Enter a Number'`
 
-**Write Host**
+### Write Host
 
 * Write-Host outputs to the terminal
 
@@ -504,7 +506,7 @@ Do as much processing as you can on the remote machine within the `-ScriptBlock`
 
 `Write-Host 'Your number is $var' -Foreground yellow -Background magenta`
 
-**Write Output**
+### Write Output
 
 * Write-Output outputs to the pipeline so additional filtering and operations can be done
 
@@ -512,7 +514,7 @@ Do as much processing as you can on the remote machine within the `-ScriptBlock`
 
 `Write-Output 'Hello' | Where-Object {$_.length -gt 10}`
 
-**Other Ways to Write**
+### Other Ways to Write
 
 `Write-Warning`
 
@@ -526,31 +528,29 @@ Do as much processing as you can on the remote machine within the `-ScriptBlock`
 
 ## Chapter 18
 
-**Create PS Session**
+### Create PS Session
 
 `$session = New-PSSession -ComputerName windows1`
 
-**Get PS Session**
+### Get PS Session
 
 `Get-PSSession`
 
-**Enter PS Session**
+### Enter PS Session
 
 `Enter-PSSession $session`
 
-**Exit PS Session**
+### Exit PS Session
 
 `Exit-PSSession`
 
-**Invoke Commands for PS Session(s)**
+### Invoke Commands for PS Session(s)
 
 `Invoke-Command -command {gci} -session $session`
 
 ## Chapters 19 and 20
 
-**Function/Script Parameters**
-
-**Define a Parameter**
+### Define a Function/Script Parameter
 
 ```
 [CmdletBinding()]
@@ -568,7 +568,7 @@ param {
 
 * `localhost` and `3` are the default values if not specified
 
-**Comment Based Help**
+### Comment Based Help
 
 ```
 <#
@@ -608,11 +608,11 @@ param {
 
 `Get-Help .\script.ps1 --full`
 
-**Script Output**
+### Script Output
 
 * Don't use `Format-*` in the output of your script unless there is a good reason. This gives additional flexibility to the user to use `Export-CSV`, `Format-Table`, `Export-ToHtml`, or whatever works best for their workflow
 
-**Verbose Output**
+### Verbose Output
 
 `Write-Verbose "This will only be seen if ran with the -verbose flag"`
 
@@ -620,24 +620,24 @@ param {
 
 [Regex Resource](https://regex101.com)
 
-**Regex Help**
+### Regex Help
 
 `help about_regular_expressions`
 
-**Regex with -match**
+### Regex with -match
 
 ```
 "car" -match "c[aeiou]r"
 $true
 ```
 
-**Regex with Select-String**
+### Regex with Select-String
 
 `Get-Content cars.txt | Select-String -pattern 'c[aeiou]r'`
 
 ## Chapter 22
 
-**Try Catch**
+### Try Catch
 
 ```
 $computer = 'windows1'
@@ -651,14 +651,14 @@ catch{
 
 ## Chapter 23
 
-**foreach**
+### foreach
 
 ```
 $array = (1..10)
 foreach ($a in $array) {Write-Host $a}
 ```
 
-**Foreach-Object**
+### Foreach-Object
 
 * Foreach-Object is normally used in a pipeline
 
@@ -666,14 +666,14 @@ foreach ($a in $array) {Write-Host $a}
 
 `Get-ChildItem | Foreach-Object -Paralell {$_.Name}`
 
-**While**
+### While
 
 ```
 $n=1
 While ($n -ne 10} (Write-Output $n; $n++)
 ```
 
-**Do While**
+### Do While
 
 ```
 Start-process notepad
@@ -688,13 +688,13 @@ Do
 
 ## Chapter 24
 
-**Error Variable**
+### Error Variable
 
 `$error` contains an array of errors from the current session
 
 `-ErrorVariable a` allows you to set a variable to send errors to for loter use
 
-**Error Action Preference**
+### Error Action Preference
 
 `$ErrorActionPreference` can be set to determine what PowerShell will do when an error occurs
 
@@ -708,28 +708,28 @@ Do
 
 ## Chapter 25 
 
-**Debug Output**
+### Debug Output
 
 `Write-Debug "This will only be seen if ran with the if the $DebugPreference variable is set to 'Continue'"`
 
 # Chapter 26
 
-**List PowerShell Profiles**
+### List PowerShell Profiles
 
 `$profiles | ft`
 
-**PowerShell Profile Location**
+### PowerShell Profile Location
 
 * $pshome\profile.ps1 - All users
 * $home\Documents\PowerShell\profile.ps1 - Only current user
 
-**Operators**
+### Operators
 
 * `-as` Convert object to different type `1000/3 -as [int]` returns `333`
 * `-is` Convert object to different type `'cat' -is [int]` returns `$false`
 * `-replace` Uses regex to replace strings `"192.168.10.15" -replace "10","11"` returns `192.168.11.15`
 
-**Date Manipulation**
+### Date Manipulation
 
 ```
 $today = Get-Date
