@@ -69,7 +69,7 @@ Get-Help Get-Process -full
 -Name <System.String[]>
 ```
 
-* \[ \] Indicates that the parameter can accept an array of values or values separated by a comma
+* \[  \] Indicates that the parameter can accept an array of values or values separated by a comma
 
 
 ### Cmdlet Examples
