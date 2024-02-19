@@ -16,7 +16,7 @@
 
 ## Chapter 3
 
-`help | get-process`  Command to get help in a page by page view. Equivalent to `Get-Help Get-Process | more`
+`help get-process`  Command to get help in a page by page view. Equivalent to `Get-Help Get-Process | more`
 
 `Get-Help`  Command to display summary help information.
 
@@ -91,11 +91,11 @@ Get-Help Get-Process -full
 
 The `Set-ExecutionPolicy` command dictates what scripts if any are allowed to run on a system
 
-* `Set-ExecutionPolicy -Restricted` - Only Microsoft signed scripts can run
-* `Set-ExecutionPolicy -AllSigned` - Only signed scripts can run
-* `Set-ExecutionPolicy -RemoteSigned` - All local scripts and signed remote scripts can run
-* `Set-ExecutionPolicy -Unrestricted` - All scripts can run
-* `Set-ExecutionPolicy -Bypass` - This execution policy is designed for configurations in which a PowerShell script is built into a larger application or for configurations in which PowerShell is the foundation for a program that has its own security model.
+* `Set-ExecutionPolicy -ExecutionPolicy Restricted` - Only Microsoft signed scripts can run
+* `Set-ExecutionPolicy -ExecutionPolicy AllSigned` - Only signed scripts can run
+* `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned` - All local scripts and signed remote scripts can run
+* `Set-ExecutionPolicy -ExecutionPolicy Unrestricted` - All scripts can run
+* `Set-ExecutionPolicy -ExecutionPolicy Bypass` - This execution policy is designed for configurations in which a PowerShell script is built into a larger application or for configurations in which PowerShell is the foundation for a program that has its own security model.
 
 ### Cmdlet Naming Convention
 
@@ -248,7 +248,7 @@ Mode                 LastWriteTime         Length Name
 `Compare-Object -Reference .\object1.txt -Difference .\object2.txt`
 
 ### Printing File Contents
-`Get=Contents file.txt`
+`Get-Contents file.txt`
 
 
 ## Chapter 7
@@ -316,7 +316,7 @@ Get-Help Get-Process -full
 * Format List `Get-Process | Format-List -Property Name,ID,Responding` Alias `fl`
 * Format Wide `Get-Process | Format-Wide -Property Name -Column 5` Alias `fw`
 
-* Alawys format commands the furtherst to the right as posssible. 
+* Always format commands the furtherst to the right as posssible. 
 
 ## Chapter 12
 
@@ -334,7 +334,7 @@ Get-Help Get-Process -full
 
 ### Comparison Operators
 
-* Prefix "i" means "case sensitive" (which is already the default)
+* Prefix "i" means "case insensitive" (which is already the default)
 * Prefix "c" means "case sensitive"
 
 Equality
@@ -406,7 +406,7 @@ From an admin PowerShell window, run `Enable-PSRemoting`
 
 `Enter-PSSession -Hostname Computer1 -Username user1` use `-Hostname` to create a session over SSH
 
-vClosing an Interactive PS Session
+### Closing an Interactive PS Session
 
 `Exit-PSSession`
 
@@ -418,9 +418,15 @@ vClosing an Interactive PS Session
 
 Use hostname instead of IP address
 
-`help about_Remote_Troubleshooting -Online` for detailed troubleshooting steps
+`help about_Remote_Troubleshooting` for detailed troubleshooting steps
 
 Do as much processing as you can on the remote machine within the `-ScriptBlock` to reduce transmitted data and increase processing speed. Really makes a difference when running commands on multiple machines
+
+### Set PS Session Configuration Preference
+
+- This will try to run remote sessions using PowerShell 7 and fall back to other available versions of PowerShell. Consider putting this inside profile.ps1
+
+`$PSSessionConfigurationName = 'PowerShell.7'`
 
 ## Chapter 14
 
@@ -628,7 +634,7 @@ param {
 
 ```
 "car" -match "c[aeiou]r"
-$true
+True
 ```
 
 ### Regex with Select-String
@@ -670,7 +676,7 @@ foreach ($a in $array) {Write-Host $a}
 
 ```
 $n=1
-While ($n -ne 10} (Write-Output $n; $n++)
+While ($n -ne 10) {Write-Output $n; $n++}
 ```
 
 ### Do While
@@ -716,7 +722,7 @@ Do
 
 ### List PowerShell Profiles
 
-`$profiles | ft`
+`$profile | ft`
 
 ### PowerShell Profile Location
 
