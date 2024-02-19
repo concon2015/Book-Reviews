@@ -29,7 +29,7 @@ The book was broken out into 27 chapters, each of which was between 5-20 pages. 
 
 I feel like took me from a 3/10 skill level with PowerShell to a 6.5/10 skill level with potential to continue moving forward.
 
-While reading this book, I highlighted key areas and decided to turn that into a [cheatsheet](<PowerShell in a Month of Lunches/cheatsheet.md>) for further use. This will give me a high level view of skills and commands I used while going through this book. This is not meant to replace the book but instead to supplement it and reinforce long term retention.
+While reading this book, I highlighted key areas and decided to turn that into a [cheatsheet](cheatsheet.md) for further use. This will give me a high level view of skills and commands I used while going through this book. This is not meant to replace the book but instead to supplement it and reinforce long term retention.
 
 **Skills I gained with this book include**
 
