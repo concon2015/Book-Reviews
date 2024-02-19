@@ -46,7 +46,7 @@ Optional - Entire parameter and data type are inside brackets
 
 ### Positional Parameters
 
-* Don’t need to provide parameter name as long as all positional paremeters are in the right order
+* Don’t need to provide parameter name as long as all positional parameters are in the right order
 
 ```
 Get-Help Get-Process -full
@@ -99,7 +99,7 @@ The `Set-ExecutionPolicy` command dictates what scripts if any are allowed to ru
 
 ### Cmdlet Naming Convention
 
-Cmdlets follow a verb - noun naming comvention
+Cmdlets follow a verb - noun naming convention
 
 ### PowerShell Verbs
 
@@ -166,13 +166,13 @@ tee -> Tee-Object       type -> Get-Content     where -> Where-Object   wjb -> W
 
 ### Truncating Parameter Names
 
-You can abreviate parameter names using as long as they are unique.
+You can abbreviate parameter names using as long as they are unique.
 `-ComputerName` can be abbreviated to `-Comp`
 
 ## Chapter 5
 
 ### PowerShell Providers
-A PowerShell provider allows commmand line access to data and components of the system that wouldn't otehrtwise be accessible.
+A PowerShell provider allows command line access to data and components of the system that wouldn't otherwise be accessible.
 
 `Get-PSProvider`
 ```
@@ -211,7 +211,7 @@ WSMan
 
 `cd c:\temp\folder1` is an alias for `Set-Location`
 
-You can also naviage in other drives such as `Set-Location hkcu:` or `cd env:`
+You can also navigate in other drives such as `Set-Location hkcu:` or `cd env:`
 
 ### View Files, Folders, and Data
 
@@ -239,7 +239,7 @@ Mode                 LastWriteTime         Length Name
 
 * `Export-CSV` Note: Can be imported with `Import-CSV`
 * `ConvertTo-Json | Out-File file.json`
-* `Export-Clixml` Note: This format keeps all objectes in tact and can be imported with `Import-Clixml`
+* `Export-Clixml` Note: This format keeps all objects in tact and can be imported with `Import-Clixml`
 * `Out-File`
 * `ConvertTo-Html | Out-File index.html`
 
@@ -316,7 +316,7 @@ Get-Help Get-Process -full
 * Format List `Get-Process | Format-List -Property Name,ID,Responding` Alias `fl`
 * Format Wide `Get-Process | Format-Wide -Property Name -Column 5` Alias `fw`
 
-* Always format commands the furtherst to the right as posssible. 
+* Always format commands the furthest to the right as possible. 
 
 ## Chapter 12
 
@@ -392,7 +392,7 @@ Properties can be appended such as `$_.WorkingSet`
 
 ## Chapter 13
 
-WSMan stands for Web Services for Management. This is the communication protocol for remote powershell. This opererates over HTTP and HTTPS. (Note: traffic is still encrypted over http). WSMan runs via the WinRM process. This is installed by default on Windows but not enabled. Can be enabled via GPO.
+WSMan stands for Web Services for Management. This is the communication protocol for remote powershell. This operates over HTTP and HTTPS. (Note: traffic is still encrypted over http). WSMan runs via the WinRM process. This is installed by default on Windows but not enabled. Can be enabled via GPO.
 
 PowerShell remoting can be done with (Windows), macOS, and Linux over SSH
 
@@ -670,7 +670,7 @@ foreach ($a in $array) {Write-Host $a}
 
 `Get-ChildItem | Foreach-Object {$_.Name}`
 
-`Get-ChildItem | Foreach-Object -Paralell {$_.Name}`
+`Get-ChildItem | Foreach-Object -Parallel {$_.Name}`
 
 ### While
 
@@ -698,19 +698,19 @@ Do
 
 `$error` contains an array of errors from the current session
 
-`-ErrorVariable a` allows you to set a variable to send errors to for loter use
+`-ErrorVariable a` allows you to set a variable to send errors to for later use
 
 ### Error Action Preference
 
 `$ErrorActionPreference` can be set to determine what PowerShell will do when an error occurs
 
-* `Break` - Enter debuggger
+* `Break` - Enter debugger
 * `Continue` (Default) - Display error message and continue running
-* `Ignore` - Supress the error message and continue running (Note: Only for use on a per command basis. Not valid value for `$ErrorActionPreference` variable)
+* `Ignore` - Suppress the error message and continue running (Note: Only for use on a per command basis. Not valid value for `$ErrorActionPreference` variable)
 * `Inquire` - Display error message and ask if user wants to keep running
 * `SilentlyContinue` - Don't display message and continue running
 * `Stop` - Stop running program
-* `Suspend` - Suspend workflow and allow for further investiation (Note: Only for use on a per command basis. Not valid value for `$ErrorActionPreference` variable)
+* `Suspend` - Suspend workflow and allow for further investigation (Note: Only for use on a per command basis. Not valid value for `$ErrorActionPreference` variable)
 
 ## Chapter 25 
 
