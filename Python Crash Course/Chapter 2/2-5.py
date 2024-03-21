@@ -1,0 +1,1 @@
+print('William Gibson once said, "The future is already here—it’s just not evenly distributed."')
