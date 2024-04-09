@@ -1,0 +1,3 @@
+In Python you can read from files
+In Python you can make variables
+In Python you can loop over arrays
