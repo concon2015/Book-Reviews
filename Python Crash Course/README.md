@@ -53,7 +53,9 @@ While reading this book, I noted key areas and decided to turn that into a [chea
 
 Following this book, I see a few next steps to continue my Python learning. While I won't start on these immediately, I will consider these for my long term learning path.
 
-- [Python Documenation](https://docs.python.org/3/)
+- [Python Documentation](https://docs.python.org/3/)
+- [Fluent Python, 2nd Edition](https://www.oreilly.com/library/view/fluent-python-2nd/9781492056348/) by Luciano Ramalho
+- Threat Hunting with Jupyter Notebooks
 - [Black Hat Python, 2nd Edition](https://nostarch.com/black-hat-python2E) By Justin Seitz and Tim Arnold
 - [r/Python](https://www.reddit.com/r/Python/)
 - [LeetCode](https://leetcode.com/)
