@@ -1,4 +1,4 @@
-# # Uptime: A Practical Guide to Personal Productivity and Wellbeing, by Laura Mae Martin
+# Uptime: A Practical Guide to Personal Productivity and Wellbeing, by Laura Mae Martin
 
 Reviewed by : Connor Blackard
 
@@ -23,7 +23,7 @@ The book was has an introduction and twenty chapters. It wasn't a long book and 
 
 ## What I Gained from This Book
 
-I have never felt truly unproductive in my personal or professional life but deep down I have felt that I could be more intentional and organized in my process, meetings, and things I am doing. I feel that this book was a great primer for how to increase productivity without having to burn yourself out with a ton of additional effort to make it happen. Being the first productivity book I have read in a long time (I think the last one was 7 Habits of a Highly Effective Teen in Middle School) this one really knocked it our of the park and far exceeded my expectations.
+I have never felt truly unproductive in my personal or professional life but deep down I have felt that I could be more intentional and organized in my process, meetings, and things I am doing. I feel that this book was a great primer for how to increase productivity without having to burn yourself out with a ton of additional effort to make it happen. Being the first productivity book I have read in a long time (I think the last one was 7 Habits of a Highly Effective Teen in Middle School) this one really knocked it out of the park and far exceeded my expectations.
 
 **What I Gained From This Book**
 
